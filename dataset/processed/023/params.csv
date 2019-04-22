@@ -1,0 +1,2 @@
+tx_id,out_value,max_size,fee_rate,dust_threshold,min_change_output,change_output_size,has_change_output,change_value
+5ad460064c372215dd13d621,36905,1048576,1.0990813648294,601,601,34,0,0

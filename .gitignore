@@ -1,0 +1,22 @@
+# Python
+bin/
+etc/
+include/
+lib/
+share/
+
+pip-selfcheck.json
+
+.ipynb_checkpoints/
+__pycache__/
+
+# Latex
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
+
+# Vim YCM
+.ycm_extra_conf.py

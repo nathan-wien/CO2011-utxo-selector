@@ -1,0 +1,70 @@
+{
+    "_id": {
+        "$oid": "5ad4b8154c372215dd13d6a7"
+    },
+    "fee": 14960,
+    "id": "f68a61567526464364b47a1441e358517b98717361c02370d4b0e0355e759fed",
+    "raw": "0100000002fa936cb238e8b61785cbfa46f796f7da46721c323ba9191aa1c1522f1fac6308000000006a4730440220755136568dd55440d8bdfbad8e127edcf3ad8220c369d81b5521866afefcb82b02203b019f41ec4518540f52fba6f1d1d2b3cf79093e91d18e4aa71248fbc1784dcb01210272776ca3ac1a83a1383568ced5fc388ac6eab37771202ae30288ac6c77636c21ffffffff230e4303a4df8cc7493b8b433751ea2d42d65e87c7f20657ed3c1b3dd52bf4bb380000006a47304402204849f440f39bf15cdf4e5defa95350a306c5cd2d488282647b7311466110d01002201bd133fdafbb74b096f2c2541713418672aa62b790c40b338ec4d1020ef96ea801210272776ca3ac1a83a1383568ced5fc388ac6eab37771202ae30288ac6c77636c21ffffffff02df591e00000000001976a9143f86beb082e58b9cd3a77cbe00b947309df779bf88aca75a1e00000000001976a9147dd55d98a551feb37254ddc0405eacd04ea2904188ac00000000",
+    "size": 1488,
+    "time": 1523890192,
+    "valueOut": 0.03978374,
+    "vin": [
+        {
+            "addr": "1EwXmMsVNQoLLdMBvQ2m26tkooS3DA2Zuw",
+            "utxo": [
+                {
+                    "choosen": 1,
+                    "confirmations": 7,
+                    "scriptPubKey": "76a91498e9c73f33e2a30b12232bf3a36a66ab9c4b5c6088ac",
+                    "txid": "0863ac1f2f52c1a11a19a93b321c7246daf796f746facb8517b6e838b26c93fa",
+                    "type": "pubkeyhash",
+                    "value": 1092260,
+                    "vout": 0
+                },
+                {
+                    "choosen": 1,
+                    "confirmations": 7,
+                    "scriptPubKey": "76a91498e9c73f33e2a30b12232bf3a36a66ab9c4b5c6088ac",
+                    "txid": "bbf42bd53d1b3ced5706f2c7875ed6422dea5137438b3b49c78cdfa403430e23",
+                    "type": "pubkeyhash",
+                    "value": 2901074,
+                    "vout": 56
+                }
+            ]
+        }
+    ],
+    "vout": [
+        {
+            "n": 0,
+            "scriptPubKey": {
+                "addresses": [
+                    "16ntzKnACJPAFQsdHxWTsWNQwp2458XUiX"
+                ],
+                "asm": "OP_DUP OP_HASH160 3f86beb082e58b9cd3a77cbe00b947309df779bf OP_EQUALVERIFY OP_CHECKSIG",
+                "hex": "76a9143f86beb082e58b9cd3a77cbe00b947309df779bf88ac",
+                "type": "pubkeyhash"
+            },
+            "spentHeight": null,
+            "spentIndex": null,
+            "spentTxId": null,
+            "value": "0.01989087",
+            "valueSat": 1989087
+        },
+        {
+            "n": 1,
+            "scriptPubKey": {
+                "addresses": [
+                    "1CUM4t7juDSQtCuZKkS71t5zy4rBNDBSgz"
+                ],
+                "asm": "OP_DUP OP_HASH160 7dd55d98a551feb37254ddc0405eacd04ea29041 OP_EQUALVERIFY OP_CHECKSIG",
+                "hex": "76a9147dd55d98a551feb37254ddc0405eacd04ea2904188ac",
+                "type": "pubkeyhash"
+            },
+            "spentHeight": null,
+            "spentIndex": null,
+            "spentTxId": null,
+            "value": "0.01989287",
+            "valueSat": 1989287
+        }
+    ]
+}

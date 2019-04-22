@@ -1,0 +1,50 @@
+\section{Introduction}
+  \subsection{Bitcoin and Blockchain}
+  \begin{itemize}
+    \item \textbf{Decentralized System}
+      \par The idea behind cryptocurrencies is a decentralized system for transactions. Instead of a traditional client-server network, cryptocurrencies like Bitcoin utilize a peer-to-peer network in which every machine on the network, called node, have the same copy of the history of transactions on the network.
+    \item \textbf{Blocks and Blockchain}
+      \par The history of transactions is stored in a system called \textbf{blockchain}. On this ``chain", each block stores a set of transactions, together with the hash of the previous block. A transaction is said to be confirmed only when a block containing it is put onto the chain.
+    \item \textbf{Miners and Transaction Confirmation}
+      \par On a network of cryptocurrency, there needs to be some kind of mechanism to confirm transactions by putting them in a new block on the blockchain. The nodes that are responsible for transaction confirmation are called \textbf{miners}.
+      \par To be able to create a new block on the blockchain, a miner needs to participate in a race with other miners on the network to find a solution for a ``puzzle". This kind of puzzle is somewhat like lottery tickets. The more computational power a miner have, the higher chance it will be the first one to solve the puzzle - just like the more lottery tickets one buys, the higher chance he or she will win the lottery.
+      \par Because the confirmation mechanism is based on computational work, it is super hard for a miner to create a fraudulent transaction, unless it has more than half of the computational power of all miners on the network combined.
+      \par After a successful confirmation, a miner will receive bounty from two different sources:
+      \begin{itemize}
+        \item \textbf{Transaction fee}: each transaction has an amount of transaction fee to attract miners to include it into a new block
+        \item \textbf{Coin base}: the network automatically includes an amount of currency called ``coin base" as a prize for the miner.
+      \end{itemize}
+    \item \textbf{Bitcoin Transactions and UTXOs}
+      \par Some cryptocurrencies, such as Bitcoin, uses UTXOs (which stands for Unspent Transaction Outputs) as ``inputs" of transactions. We can think of UTXOs as banknotes. When one buys a product in real life, he or she pays with banknotes and then gets an amount of change if the paid amount exceeds the price of the product. It is the same for UTXOs: a transaction takes some UTXOs as inputs, produces some outputs and also a change output if required.
+    \item \textbf{Transaction Size and Transaction Fee}
+      \par On the current Bitcoin network, an input has a constant size of 148 bits and an output has a constant size of 34 bits. The size of a transaction is the size of all inputs and outputs combined. At a moment, the transaction fee can be computed with the following formula:
+      \begin{align*}
+        \text{Fee} \approx \text{Fee rate} \times [148 * \text{\# inputs} + 34 * \text{\# outputs}]
+      \end{align*}
+    \item \textbf{Dust}
+      \par Roughly speaking, dusts are transaction outputs that are so small that the fee to retrieve it is even larger than the value of itself. The network would try to prevent the creation of this type of outputs by including any output that is dust into the transaction fee.
+  \end{itemize}
+
+  \subsection{The Coin Selection Problem}
+    \par To understand the Coin Selection problem, we need to understand two objectives:
+      \begin{itemize}
+        \item Minimizing the transaction fee
+        \item Shrinking the UTXO pool
+      \end{itemize}
+
+      \subsubsection{Minimizing the Transaction Fee}
+        \par Minimizing the transaction fee is what a user wants. In the formula of transaction fee, fee rate is constant at a point in time, and the number of outputs depends on the decision of the user for a particular transaction. What is left is the number of inputs. The larger the number of inputs is, the higher the fee becomes. Therefore, a user would want to use the least number of inputs possible for a transaction.
+
+      \subsubsection{Shrinking the UTXO pool}
+        \par It is important to keep the UTXO pool relatively small for performance purpose: the larger the UTXO pool is, the more it hampers processing speed and consumes memory. To shrink the UTXO pool, there are two things we can do:
+
+        \begin{itemize}
+          \item Prevent the creation of change output
+          \item Select the largest number of inputs possible for one transaction
+        \end{itemize}
+
+        \par As we can see, the two objectives somewhat contradicts each other: for the previous objective, we want to select as few inputs as possible, while for this objective, we want to do the opposite. Therefore, we always have some kind of trade-off between the two objectives.
+
+        \par Our project try to incorporate these two objectives through two mathematical models solved by linear optimization.
+
+\clearpage

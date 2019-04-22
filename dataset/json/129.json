@@ -1,0 +1,70 @@
+{
+    "_id": {
+        "$oid": "5ad4a9e64c372215dd13d68b"
+    },
+    "fee": 14960,
+    "id": "0fc9a61231675503c5ffd7e9a786800fae46c38dcfb43f8aeb163c0868ece04a",
+    "raw": "010000000220cf2f5ca22522ba3a74ac4ee3c223d30e4be249ee93b689f0c272485a327fc5000000006a47304402202af7bd0a3fa5d183f765e6bd5fd04a66957fca74a1ed379a156d933e67415b6b02207d4376e656ebb7f4e4e5ebc2c443e412906662d0e92bf978a2ddd3a8f20a61f2012102a0f9aed22dea5f94c04d109b1e9a00d477e88cd2faf542a4d14883ae5ce565b3ffffffff32d477c50567cee8ca5d941ae90f2c25db983d2952eb3210f0a0e75ca4b6b330030000006b483045022100e3c95a96d97380ee7432a4bed4d1ed715fcc5ba568203a3644f74571ae10dc8802204651c01c6a07fbebf3085b42257c1331dfc68be10164e93af917c856e20cf7db012102a0f9aed22dea5f94c04d109b1e9a00d477e88cd2faf542a4d14883ae5ce565b3ffffffff02a5261300000000001976a914809d7b983c500e55e0eac468eb6ecb280685c2ec88acca9b3200000000001976a9147f30c9f7c98c95ce0a147847fd15cf049d9164a888ac00000000",
+    "size": 1492,
+    "time": 1523886561,
+    "valueOut": 0.04571759,
+    "vin": [
+        {
+            "addr": "1F8fK5zD9BsCwWGZgoqinV2yZgPYANWouX",
+            "utxo": [
+                {
+                    "choosen": 1,
+                    "confirmations": 4835,
+                    "scriptPubKey": "76a9149b04a75ff80685d969d91c1ba4de62083e6c1dc288ac",
+                    "txid": "c57f325a4872c2f089b693ee49e24b0ed323c2e34eac743aba2225a25c2fcf20",
+                    "type": "pubkeyhash",
+                    "value": 42068,
+                    "vout": 0
+                },
+                {
+                    "choosen": 1,
+                    "confirmations": 10,
+                    "scriptPubKey": "76a9149b04a75ff80685d969d91c1ba4de62083e6c1dc288ac",
+                    "txid": "30b3b6a45ce7a0f01032eb52293d98db252c0fe91a945dcae8ce6705c577d432",
+                    "type": "pubkeyhash",
+                    "value": 4544651,
+                    "vout": 3
+                }
+            ]
+        }
+    ],
+    "vout": [
+        {
+            "n": 0,
+            "scriptPubKey": {
+                "addresses": [
+                    "1Cj49ejEvYgMKcctJYoY8ukzwSAQ79Y59F"
+                ],
+                "asm": "OP_DUP OP_HASH160 809d7b983c500e55e0eac468eb6ecb280685c2ec OP_EQUALVERIFY OP_CHECKSIG",
+                "hex": "76a914809d7b983c500e55e0eac468eb6ecb280685c2ec88ac",
+                "type": "pubkeyhash"
+            },
+            "spentHeight": null,
+            "spentIndex": null,
+            "spentTxId": null,
+            "value": "0.01255077",
+            "valueSat": 1255077
+        },
+        {
+            "n": 1,
+            "scriptPubKey": {
+                "addresses": [
+                    "1CbXGH5fRRZS6WSn8EK4fU33DhupaEGW6o"
+                ],
+                "asm": "OP_DUP OP_HASH160 7f30c9f7c98c95ce0a147847fd15cf049d9164a8 OP_EQUALVERIFY OP_CHECKSIG",
+                "hex": "76a9147f30c9f7c98c95ce0a147847fd15cf049d9164a888ac",
+                "type": "pubkeyhash"
+            },
+            "spentHeight": null,
+            "spentIndex": null,
+            "spentTxId": null,
+            "value": "0.03316682",
+            "valueSat": 3316682
+        }
+    ]
+}

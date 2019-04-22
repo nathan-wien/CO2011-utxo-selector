@@ -1,0 +1,54 @@
+{
+    "_id": {
+        "$oid": "5ad494f14c372215dd13d66a"
+    },
+    "fee": 170000,
+    "id": "07929bdffdea85eceb588e0a135a1ea8be2d20e94e461b8e93557e97bd85814f",
+    "raw": "010000000205a9bab4d8cbcd16a682b517501fa8f10ef6dcb901b07259e41f6ae03c8ea949000000006a473044022058f14bf46680d43571dab5b3311ae6e8f5b1eee2bf72aafeded459034cbd12fc02207afe4b8a169793d24be015d1dbfe23ff7bd0b6c6b162dc09fefe670900205914012103539bf061e49aaeecf674be52d3820a0ac6c85ca76bcf2659acadb09812509535ffffffff3593272a3ba948bbe48a3c453ccb2310d35e564b36e60274f4408558b12eaf4f420000006a47304402205c25a12e68922dc0d63c5baea7bd4a334dfb8ba8a0ddc86ab65a5d55c20e5e92022034328fd073fb3f1eecadf4847332618af41e25c85b62da8a66d497d0105c38bb012103539bf061e49aaeecf674be52d3820a0ac6c85ca76bcf2659acadb09812509535ffffffff01e867ae05000000001976a91474e149ecda82c6a3ebe48c62bb17b4a812be11f488ac00000000",
+    "size": 1352,
+    "time": 1523881196,
+    "valueOut": 0.95315944,
+    "vin": [
+        {
+            "addr": "1KEeHFd8vnDfteU6c2TXgspA8rzGvfm28C",
+            "utxo": [
+                {
+                    "choosen": 1,
+                    "confirmations": 18,
+                    "scriptPubKey": "76a914c806caa3d79ae68241b9655bf4cf25a648474ba288ac",
+                    "txid": "49a98e3ce06a1fe45972b001b9dcf60ef1a81f5017b582a616cdcbd8b4baa905",
+                    "type": "pubkeyhash",
+                    "value": 11157779,
+                    "vout": 0
+                },
+                {
+                    "choosen": 1,
+                    "confirmations": 18,
+                    "scriptPubKey": "76a914c806caa3d79ae68241b9655bf4cf25a648474ba288ac",
+                    "txid": "4faf2eb1588540f47402e6364b565ed31023cb3c453c8ae4bb48a93b2a279335",
+                    "type": "pubkeyhash",
+                    "value": 84328165,
+                    "vout": 66
+                }
+            ]
+        }
+    ],
+    "vout": [
+        {
+            "n": 0,
+            "scriptPubKey": {
+                "addresses": [
+                    "1Bf1GbFVMfjZrMf5SXeJFY2bkvAF5y8m2w"
+                ],
+                "asm": "OP_DUP OP_HASH160 74e149ecda82c6a3ebe48c62bb17b4a812be11f4 OP_EQUALVERIFY OP_CHECKSIG",
+                "hex": "76a91474e149ecda82c6a3ebe48c62bb17b4a812be11f488ac",
+                "type": "pubkeyhash"
+            },
+            "spentHeight": null,
+            "spentIndex": null,
+            "spentTxId": null,
+            "value": "0.95315944",
+            "valueSat": 95315944
+        }
+    ]
+}

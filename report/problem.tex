@@ -1,0 +1,219 @@
+
+\section{Problem Statement and Modeling}
+  \subsection{Problem Statement}
+    \par Given a transaction with:
+      \begin{itemize}
+        \item A set of inputs: each input has a certain value and a size of 148 bits.
+        \item A list of outputs: each output has a certain value and a size of 34 bits.
+        \item Transaction fee rate
+        \item Dust threshold: any output with the value lower than this threshold is considered dust.
+      \end{itemize}
+    \par Find a way to select inputs such that:
+      \begin{itemize}
+        \item The transaction size is as low as possible
+        \item The number of selected inputs is as large as possible.
+      \end{itemize}
+
+  \subsection{Model 1: Minimizing transaction size}
+    {
+      \small
+      \textit{This part is also included as a Jupyter notebook in the source code}
+    }
+
+\subsubsection{Problem Modelling}
+
+\begin{itemize}
+  \item \textbf{Input parameters}
+    \begin{center}
+    \begin{tabular}{|c|c|}
+    \hline
+    \textbf{Variable}                 & \textbf{Meaning}              \\ \hline
+    $U = \{u_1, \ldots, u_n\}$        & set of UTXOs                  \\ \hline
+    $O = \{o_1, \ldots, o_m\}$        & set of outputs                \\ \hline
+    $V^u = \{v_1^u, \ldots, v_n^u \}$ & set of value of UTXOs         \\ \hline
+    $V^o = \{v_1^o, \ldots, v_m^o \}$ & set of value of outputs       \\ \hline
+    $S^u = \{s_1^u, \ldots, s_n^u \}$ & set of size of UTXOs          \\ \hline
+    $S^o = \{s_1^o, \ldots, s_m^o \}$ & set of size of outputs        \\ \hline
+    $M_s$                             & maximum size of a transaction \\ \hline
+    $\alpha$                          & fee rate                      \\ \hline
+    $T$                               & dust threshold                \\ \hline
+    $\epsilon$                        & minimum change output         \\ \hline
+    \end{tabular}
+    \end{center}
+
+  \item \textbf{Decision variables}
+  \begin{align*}
+    x_i =
+    \begin{cases}
+    1, \text{if UTXO $u_i$ is chosen} \\
+    0, \text{otherwise}
+    \end{cases}
+  \end{align*}
+
+  \item \textbf{Immediate variables}:
+  \begin{itemize}
+    \item $y$: transaction size
+    \item $z_v$: change output
+    \item $z_s$: change value
+  \end{itemize}
+
+  \item The relationship between change output value $z_v$ and its size $z_s$:
+  \begin{align*}
+  z_s =
+    \begin{cases}
+      0, 0 \leq z_v \leq \epsilon \\
+      \beta, z_v > \epsilon
+    \end{cases}
+  \end{align*}
+
+  \item \textbf{Constraint 1}: A transaction size may not exceed maximum block data size.
+  \begin{align*}
+y = \sum\limits_{i|u_i \in U} (s_i^u * x_i) + \sum\limits_{j|o_i \in O} s_j^o + z_s \leq M_s
+  \end{align*}
+
+  \item \textbf{Constraint 2}: A transaction must have sufficient value for consuming.
+  \begin{align*}
+\sum\limits_{i|u_i \in U} (v_i^u * x_i) = \sum\limits_{j|o_i \in O} v_j^o + \alpha y + z_v
+  \end{align*}
+
+  \item \textbf{Constraint 3}: All the transaction outputs must be higher than the dust threshold to certain that this transaction is relayed to the network and confirmed.
+  \begin{align*}
+\sum\limits_{j|o_i \in O} v_j^o \geq T
+  \end{align*}
+
+  \item \textbf{Objective function}: Minimize transaction size
+  \begin{align*}
+min(y)
+  \end{align*}
+
+\end{itemize}
+
+\subsubsection{Reformulating}
+
+\begin{itemize}
+  \item Define $M_c$ as the maximum value of change.
+  \begin{align*}
+M_{c} = \sum\limits_{i|u_i \in U} (v_i^u * x_i) - \sum\limits_{j|o_i \in O} v_j^o
+  \end{align*}
+
+  \item Define a binary variable $t$:
+  \begin{align*}
+    t =
+    \begin{cases}
+        0, \text{if $z_v - \epsilon \leq 0$, or if $z_s = 0$}\\
+        1, \text{if $z_v - \epsilon > 0$, or if $z_s = \beta$}
+    \end{cases}
+  \end{align*}
+
+  \item The relationship between $t$ and $z_v$ can be rewritten as a linear inequality:
+  \begin{align*}
+    z_v - \epsilon \leq M_c t \\
+\Rightarrow
+    - M_c t + z_v \leq \epsilon
+  \end{align*}
+
+  \item Substitute $t$ into $y$:
+  \begin{align*}
+y = \sum\limits_{i|u_i \in U} (s_i^u * x_i) + \sum\limits_{j|o_i \in O} s_j^o + t \times \beta \leq M_s
+  \end{align*}
+
+  \item Substitute $t$ into constraint 1:
+  \begin{align*}
+    &&\sum\limits_{i|u_i \in U} (v_i^u * x_i)
+    &=
+    \sum\limits_{j|o_i \in O} v_j^o + \alpha y + z_v \\
+&\Rightarrow
+    &\sum\limits_{i|u_i \in U} (v_i^u * x_i)
+    &=
+    \sum\limits_{j|o_i \in O} v_j^o + \alpha \bigg[\sum\limits_{i|u_i \in U} (s_i^u * x_i) + \sum\limits_{j|o_i \in O} s_j^o + t \times \beta\bigg] + z_v \\
+&\Rightarrow
+    &\sum\limits_{i|u_i \in U} \bigg[\bigg(v_i^u - \alpha s_i^u\bigg) x_i \bigg] - \alpha \beta t - z_v
+    &=
+    \sum\limits_{j|o_i \in O} v_j^o + \alpha \sum\limits_{j|o_i \in O} s_j^o \\
+  \end{align*}
+
+\end{itemize}
+
+\subsubsection{Solving with Linear Optimization}
+\par After reformulating, the model can be solved by linear optimization:
+
+Minimize the objective function:
+\begin{align*}
+  y = \sum\limits_{i|u_i \in U} (s_i^u * x_i) + \sum\limits_{j|o_i \in O} s_j^o + t \times \beta
+\end{align*}
+
+subject to the linear constraints:
+\begin{align*}
+  \sum\limits_{i|u_i \in U} (s_i^u * x_i) + \sum\limits_{j|o_i \in O} s_j^o + t \times \beta \leq M_s
+\end{align*}
+
+\begin{align*}
+    \sum\limits_{i|u_i \in U} \bigg[\bigg(v_i^u - \alpha s_i^u\bigg) x_i \bigg] - \alpha \beta t - z_v
+    =
+    \sum\limits_{j|o_i \in O} v_j^o + \alpha \sum\limits_{j|o_i \in O} s_j^o
+\end{align*}
+
+\begin{align*}
+-M_c t + z_v \leq \epsilon
+\end{align*}
+
+and the bounds:
+
+\begin{align*}
+    x_i \in \{0, 1\} \forall u_i \in U \\
+    t_i \in \{0, 1\} \\
+    0 \leq z_v \leq M_c
+\end{align*}
+
+  \subsection{Model 2: Maximize the number of selected inputs based on an upper bound of transaction fee}
+    {
+      \small
+      \textit{This part is also included as a Jupyter notebook in the source code}
+    }
+
+    \subsubsection{Problem Modelling}
+      \par The same with Model 1 with some modifications:
+\begin{itemize}
+  \item \textbf{Constraint 1}: The size of a transaction cannot exceed the minimum size $Y$ found by Model 1 times $(1 + \gamma)$, where $\gamma \in [0, 1]$ is a choosen coefficient: 
+  \begin{align*}
+    y = \sum\limits_{i|u_i \in U} (s_i^u * x_i) + \sum\limits_{j|o_i \in O} s_j^o + z_s \leq (1 + \gamma) Y
+  \end{align*}
+
+  \item \textbf{Objective function}: Maximize the number of selected UTXOs (and also try to produce no change output)
+  \begin{align*}
+    \max(\sum\limits_{i|u_i \in U} u_i - t)
+  \end{align*}
+\end{itemize}
+
+
+\subsubsection{Solving with Linear Optimization}
+After reformulating, the model can be solved by linear optimization:
+
+Minimize the objective function:
+\begin{align*}
+  \max(\sum\limits_{i|u_i \in U} u_i - t)
+\end{align*}
+
+subject to the linear constraints:
+\begin{align*}
+  \sum\limits_{i|u_i \in U} (s_i^u * x_i) + t \times \beta \leq (1 + \gamma) Y  - \sum\limits_{j|o_i \in O} s_j^o
+\end{align*}
+
+\begin{align*}
+    \sum\limits_{i|u_i \in U} \bigg[\bigg(v_i^u - \alpha s_i^u\bigg) x_i \bigg] - \alpha \beta t - z_v
+    =
+    \sum\limits_{j|o_i \in O} v_j^o + \alpha \sum\limits_{j|o_i \in O} s_j^o
+\end{align*}
+
+\begin{align*}
+  -M_c t + z_v \leq \epsilon
+\end{align*}
+
+and the bounds:
+
+\begin{align*}
+  x_i \in \{0, 1\} \forall u_i \in U \\
+  t_i \in \{0, 1\} \\
+  0 \leq z_v \leq M_c
+\end{align*}
+

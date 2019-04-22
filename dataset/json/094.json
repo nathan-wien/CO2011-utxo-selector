@@ -1,0 +1,54 @@
+{
+    "_id": {
+        "$oid": "5ad492cd4c372215dd13d668"
+    },
+    "fee": 1870,
+    "id": "84b70f1dd29ff29eddc7139c95aa1c5024f8297bfc05aca02e073b4c0237ee14",
+    "raw": "010000000270cc5fa0049d9b4f1e282f749023c2e81913d69865ace8a6902cce90ac1d7ecc000000006a47304402206c35d27b2dbebe194c5037701d25ea9fdd7ae3f4ddfb5d0467c4ef41cf695bcf02203dd0ed3ee0357489e1ffaa2e79f9c1195b2098bf091caba586956d9b374634fe01210228b7e939e91b3f0794a88769d184a03827f71dcd403f140d34bc4b6db9cae0e5ffffffffbedd5be18f5849705229dab15ac775f0b90cab8a66bf4870973439da2f8c4ee0000000006b483045022100a50f2be3736c0e2916419d48ee032012752e07f0d2c5e71d88169aeff5593ec602205b39ee5cf1787c1ce7b00b2c7609edc7bed25041c106106fa752c80dc7eeb23001210228b7e939e91b3f0794a88769d184a03827f71dcd403f140d34bc4b6db9cae0e5ffffffff01f9d41a000000000017a9143f1956620801ab0b290db11f53c4d2c6f19632748700000000",
+    "size": 1348,
+    "time": 1523880648,
+    "valueOut": 0.01758457,
+    "vin": [
+        {
+            "addr": "15BKTgE2ChWStZoLeoboWsnLTFhwH32QY4",
+            "utxo": [
+                {
+                    "choosen": 1,
+                    "confirmations": 2210,
+                    "scriptPubKey": "76a9142dd412845140c50137a7009c75d1f5477d43565788ac",
+                    "txid": "cc7e1dac90ce2c90a6e8ac6598d61319e8c22390742f281e4f9b9d04a05fcc70",
+                    "type": "pubkeyhash",
+                    "value": 20640,
+                    "vout": 0
+                },
+                {
+                    "choosen": 1,
+                    "confirmations": 259,
+                    "scriptPubKey": "76a9142dd412845140c50137a7009c75d1f5477d43565788ac",
+                    "txid": "e04e8c2fda3934977048bf668aab0cb9f075c75ab1da29527049588fe15bddbe",
+                    "type": "pubkeyhash",
+                    "value": 1739687,
+                    "vout": 0
+                }
+            ]
+        }
+    ],
+    "vout": [
+        {
+            "n": 0,
+            "scriptPubKey": {
+                "addresses": [
+                    "37Ser72okVX138wzfPXHbGdHToXiDmLoCj"
+                ],
+                "asm": "OP_HASH160 3f1956620801ab0b290db11f53c4d2c6f1963274 OP_EQUAL",
+                "hex": "a9143f1956620801ab0b290db11f53c4d2c6f196327487",
+                "type": "scripthash"
+            },
+            "spentHeight": null,
+            "spentIndex": null,
+            "spentTxId": null,
+            "value": "0.01758457",
+            "valueSat": 1758457
+        }
+    ]
+}
