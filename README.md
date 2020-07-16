@@ -1,5 +1,11 @@
 # CO2011 - Mathematical Modeling - Assignment
 
+## What is this?
+
+In this project, I used linear programming to optimize the process of selecting Bitcoin UTXOs for a transaction in order to minimize the transaction fee and reduce the size of the UTXO pool.
+
+This is an assignment for the course CO2011 - Math Modelling at Ho Chi Minh City University of Technology - Semester 2, 2018/2019.
+
 ## Report And Jupyter Notebook
 
 * The path to the report is `report/main.pdf`. [link](https://github.com/nhat-m-nguyen/CO2011-Assignment/blob/master/report/main.pdf)
